@@ -9,6 +9,35 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+// Inquierer prompt to view all departments
+const viewDepartments = () => {
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "viewDepartments",
+            message: "Select which department you would like to view.",
+            choices: [
+                "View all departments",
+                "View all roles",
+                "View all employees",
+                "Add a department",
+                "Add a role",
+                "Add an employee",
+                "Update an employee role",
+            ]
+        }
+    ])
+        .then((answer) => {
+            cTable.getTable(answer);
+        });
+};
+
+// Initialize app 
+const init = () => {
+    viewDepartments();
+};
+init();
+
 // Connect to database
 const db = mysql.createConnection(
     { 
@@ -45,31 +74,6 @@ app.get('/api/departments', (req, res) => {
     });
 }
 );
-
-// Inquierer prompt to view all departments
-const viewDepartments = () => {
-    inquirer.prompt([
-        {
-            type: "list",
-            name: "viewDepartments",
-            message: "Select which department you would like to view.",
-            choices: [
-                "View all departments",
-                "View all roles",
-                "View all employees",
-                "Add a department",
-                "Add a role",
-                "Add an employee",
-                "Update an employee role",
-            ]
-        }
-    ])
-        .then((answer) => {
-            cTable.getTable(answer);
-        });
-};
-
-
 
 // Listener to connect to server
 app.listen(PORT, () => {
