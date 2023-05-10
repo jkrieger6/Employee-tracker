@@ -144,9 +144,4 @@ app.put('/api/employees/:id', (req, res) => {
 });
 
 
-// Listener to connect to server
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
-
 
