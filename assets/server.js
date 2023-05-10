@@ -1,42 +1,12 @@
 const express = require('express');
 const mysql = require('mysql2');
-const inquirer = require('inquirer');
-const cTable = require('console.table');
 const PORT = process.env.PORT || 3001;
 const app = express();
+const index = require('./index.js')
 
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-
-// Inquierer prompt to view all departments
-const viewDepartments = () => {
-    inquirer.prompt([
-        {
-            type: "list",
-            name: "viewDepartments",
-            message: "Select which department you would like to view.",
-            choices: [
-                "View all departments",
-                "View all roles",
-                "View all employees",
-                "Add a department",
-                "Add a role",
-                "Add an employee",
-                "Update an employee role",
-            ]
-        }
-    ])
-        .then((answer) => {
-            cTable.getTable(answer);
-        });
-};
-
-// Initialize app 
-const init = () => {
-    viewDepartments();
-};
-init();
 
 // Connect to database
 const db = mysql.createConnection(
@@ -111,7 +81,7 @@ app.post('/api/departments', ({ body }, res) => {
             return;
         }
         res.json({
-            message: 'success',
+            message: 'Department added successfully.',
             data: body
         });
     });
@@ -128,7 +98,7 @@ app.post('/api/roles', ({ body }, res) => {
             return;
         }
         res.json({
-            message: 'success',
+            message: 'Role added successfully.',
             data: body
         });
     });
@@ -145,7 +115,7 @@ app.post('/api/employees', ({ body }, res) => {
             return;
         }
         res.json({
-            message: 'success',
+            message: 'Employee added successfully.',
             data: body
         });
     });
@@ -165,7 +135,7 @@ app.put('/api/employees/:id', (req, res) => {
             });
         } else {
             res.json({
-                message: 'success',
+                message: 'Success! Employee role updated.',
                 data: req.body,
                 changes: res.affectedRows
             });
