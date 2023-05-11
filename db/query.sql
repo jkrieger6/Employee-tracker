@@ -1,6 +1,12 @@
--- Join all tables together when view all employees is selected from the menu list --
+-- Show all departments table --
+SELECT * 
+FROM departments;
+
+-- Show all roles table --
 SELECT *
-FROM department, role, employee
-JOIN role ON department.id = role.department_id
-JOIN employee ON role.id = employee.role_id
-ORDER BY employee.id;
+FROM roles;
+
+-- Show all employees table --
+SELECT *
+FROM employees;
+
