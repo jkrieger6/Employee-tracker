@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const PORT = process.env.PORT || 3001;
 const app = express();
-const index = require('./index.js')
+const ctable = require('console.table');
 
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
@@ -62,19 +62,11 @@ db.connect() = () => {
         })
     };
 
-
-db.query('SELECT * FROM departments', function (err, results) {
-    console.log(results);
-});
-
-// Start server after DB connection
-// db.connect(err => {
-//     if (err) throw err;
-//     console.log('Database not connected.');
-//     app.listen(PORT, () => {
-//         console.log(`Server running on port ${PORT}`);
-//     });
-// });
+function viewDepartments() {
+    db.query('SELECT * FROM departments', function (err, results) {
+        console.log(results);
+    });
+};
 
 // View all departments
 app.get('/api/departments', (req, res) => {
