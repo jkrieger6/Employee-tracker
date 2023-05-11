@@ -4,5 +4,3 @@ FROM department, role, employee
 JOIN role ON department.id = role.department_id
 JOIN employee ON role.id = employee.role_id
 ORDER BY employee.id;
-
--- Path: db/query.sql --
