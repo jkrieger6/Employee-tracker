@@ -11,7 +11,7 @@ app.use(express.json());
 // Connect to database
 const db = mysql.createConnection(
     { 
-        host: 'localhost',
+        host: '127.0.0.1',
         user: 'root',
         password: 'password',
         database: 'employee_trackerDB'
@@ -19,18 +19,22 @@ const db = mysql.createConnection(
     console.log(`Connected to the employee_tracker database.`)
 );
 
-// Start server after DB connection
-db.connect(err => {
-    if (err) throw err;
-    console.log('Database not connected.');
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
+db.query('SELECT * FROM departments', function (err, results) {
+    console.log(results);
 });
+
+// Start server after DB connection
+// db.connect(err => {
+//     if (err) throw err;
+//     console.log('Database not connected.');
+//     app.listen(PORT, () => {
+//         console.log(`Server running on port ${PORT}`);
+//     });
+// });
 
 // View all departments
 app.get('/api/departments', (req, res) => {
-    db.query(`SELECT * FROM employee_trackerDB`, (err, rows) => {
+    db.query(`SELECT * FROM department`, (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
@@ -143,5 +147,9 @@ app.put('/api/employees/:id', (req, res) => {
     });
 });
 
+// Listner to connect to PORT
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 
 
