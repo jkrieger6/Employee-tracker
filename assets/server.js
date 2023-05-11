@@ -18,6 +18,50 @@ const db = mysql.createConnection(
     },
     console.log(`Connected to the employee_tracker database.`)
 );
+db.connect() = () => {
+    promptUser()
+    };
+
+    const promptUser = () => {
+        return inquirer.prompt([
+            {
+                type: 'list',
+                name: 'options',
+                message: 'What would you like to do?',
+                choices: [
+                    "View all departments",
+                "View all roles",
+                "View all employees",
+                "Add a department",
+                "Add a role",
+                "Add an employee",
+                "Update an employee role",
+                "Exit"
+                ]
+            }   
+        ])
+        .then((answer) => {
+            const { options } = answer;
+            if (options === "View all departments") {
+                viewDepartments();
+            } else if (options === "View all roles") {
+                viewRoles();
+            } else if (options === "View all employees") {
+                viewEmployees();
+            } else if (options === "Add a department") {
+                addDepartment();
+            } else if (options === "Add a role") {
+                addRole();
+            } else if (options === "Add an employee") {
+                addEmployee();
+            } else if (options === "Update an employee role") {
+                updateEmployeeRole();
+            } else if (options === "Exit") {
+                db.end();
+            }
+        })
+    };
+
 
 db.query('SELECT * FROM departments', function (err, results) {
     console.log(results);
