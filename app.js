@@ -70,28 +70,20 @@ function viewDepartments() {
 
 // // View all roles
 function viewRoles () {
-    db.query("SELECT * FROM roles", function (err, results) {
+    db.query("SELECT * FROM role", function (err, results) {
+        // console.log(results);
         console.table(results);
         promptUser();
-        });
+  });
 }
+
 // // View all employees
 function viewEmployees () {
-
+    db.query("SELECT * FROM EMPLOYEE JOIN role ON employee.role_id = role.title AS title", function (err, results) {
+        console.table(results);
+        promptUser();
+});
 }
-
-// app.get("/api/employees", (req, res) => {
-//   db.query("SELECT * FROM employees", (err, rows) => {
-//     if (err) {
-//       res.status(500).json({ error: err.message });
-//       return;
-//     }
-//     res.json({
-//       message: "success",
-//       data: rows,
-//     });
-//   });
-// });
 
 // Add a department
 function addDepartment () {
