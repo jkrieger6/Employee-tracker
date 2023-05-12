@@ -181,23 +181,31 @@ function addEmployee () {
 }
 
 // // Update a current employee's role
-// app.put("/api/employees/:id", (req, res) => {
-//   let sql = `UPDATE employee SET role_id =? WHERE id = ?`;
-//   let params = [req.body.role_id, req.params.id];
+function updateEmployeeRole () {
+    inquirer.prompt ([
+        {
+            type: "input",
+            name: "employee_id",
+            message: "Please enter an employee ID to update"
+        },
+        {
+            type: "input",
+            name: "role_id",
+            message: "Please enter a new role ID for employee"
+        }
+    ])
+    .then ((answer) => {
+        let sql = `UPDATE employee SET role_id = ? WHERE id = ?`;
+        let params = [answer.role_id, answer.employee_id];
 
-//   db.query(sql, params, (err, res) => {
-//     if (err) {
-//       res.status(400).json({ error: err.message });
-//     } else if (!res.affectedRows) {
-//       res.json({
-//         message: "Employee not found.",
-//       });
-//     } else {
-//       res.json({
-//         message: "Success! Employee role updated.",
-//         data: req.body,
-//         changes: res.affectedRows,
-//       });
-//     }
-//   });
-// });
+        db.query(sql, params, (err, res) => {
+            if (err) {
+                console.log("Could not update employee role.");
+            } else {
+                viewEmployees();
+            }
+            promptUser();
+        });
+    });
+}
+
