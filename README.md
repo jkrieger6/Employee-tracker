@@ -2,7 +2,7 @@
 A command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL.
 
 ## Project Description
-
+A command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL. Once the application has been started the user will be prompted wiht a list to choose from for the employee database. The user can choose which table to look at in an ordered table and then can choose to add, update, or delete from the table. The user can also choose to exit the application.
 
 ## Visuals
 * For a walkthrough video on how to use this application, please click the following link:
@@ -13,6 +13,9 @@ A command-line application to manage a company's employee database, using Node.j
 ```
 npm init -y
 npm install express
+npm install mysql
+npm install inquirer@8.2.4
+npm install console.table
 ```
 * Clone repository using GitHub
 ``` 
@@ -21,13 +24,12 @@ git clone https://github.com/jkrieger6/Employee-tracker.git
 * Made using the latest versions of Visual Studio Code
 * Made with the latest version of GitHub
 * Made using the latest version of Node.js
-* Made using the latest version of Express.js
 * Made using the latest version of Insomnia Core
 
 ## Usage
-* To use this application, clone the repository to your local machine and run the following command(s) in your terminal:
+* To start this application, clone the repository to your local machine and run the following command(s) in your terminal:
 ```
-node server.js
+node app.js
 ```
 
 ## License
