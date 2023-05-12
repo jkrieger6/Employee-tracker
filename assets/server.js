@@ -1,12 +1,20 @@
+// Express.js Server
 const express = require('express');
+// MySQL2
 const mysql = require('mysql2');
+// dotenv
+require('dotenv').config();
+// PORT
 const PORT = process.env.PORT || 3001;
 const app = express();
 const ctable = require('console.table');
+// Inquirer
+const inquirer = require('inquirer');
 
 // Express middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.static('assets'));
 
 // Connect to database
 const db = mysql.createConnection(
