@@ -108,38 +108,77 @@ function addDepartment () {
 }
 
 // Add a role
-// app.post("/api/roles", ({ body }, res) => {
-//   let sql = `INSERT INTO roles (title, salary, department_id) VALUES (?, ?, ?)`;
-//   let params = [body.title, body.salary, body.department_id];
+function addRole () {
+    inquirer.prompt ([
+        {
+            type: "input",
+            name: "title",
+            message: "Please enter a title for new role"
+        },
+        {
+            type: "input",
+            name: "salary",
+            message: "Please enter a salary for new role"
+        },
+        {
+            type: "input",
+            name: "department_id",
+            message: "Please enter a department ID for new role"
+        }
+    ])
+    .then ((answer) => {
+        let sql = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
+        let params = [answer.title, answer.salary, answer.department_id];
 
-//   db.query(sql, params, (err, res) => {
-//     if (err) {
-//       res.status(400).json({ error: err.message });
-//       return;
-//     }
-//     res.json({
-//       message: "Role added successfully.",
-//       data: body,
-//     });
-//   });
-// });
+        db.query(sql, params, (err, res) => {
+            if (err) {
+                console.log("Could not add role.");
+            } else {
+                viewRoles();
+            }
+            promptUser();
+        });
+    });
+}
 
 // // Add an employee
-// app.post("/api/employees", ({ body }, res) => {
-//   let sql = `INSERT INTO employees (first_name, last_name, role_id, manager_id)`;
-//   let params = [body.first_name, body.last_name, body.role_id, body.manager_id];
+function addEmployee () {
+    inquirer.prompt ([
+        {
+            type: "input",
+            name: "first_name",
+            message: "Please enter a first name for new employee"
+        },
+        {
+            type: "input",
+            name: "last_name",
+            message: "Please enter a last name for new employee"
+        },
+        {
+            type: "input",
+            name: "role_id",
+            message: "Please enter a role ID for new employee"
+        },
+        {
+            type: "input",
+            name: "manager_id",
+            message: "Please enter a manager ID for new employee"
+        }
+    ])
+    .then ((answer) => {
+        let sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`;
+        let params = [answer.first_name, answer.last_name, answer.role_id, answer.manager_id];
 
-//   db.query(sql, params, (err, res) => {
-//     if (err) {
-//       res.status(400).json({ error: err.message });
-//       return;
-//     }
-//     res.json({
-//       message: "Employee added successfully.",
-//       data: body,
-//     });
-//   });
-// });
+        db.query(sql, params, (err, res) => {
+            if (err) {
+                console.log("Could not add employee.");
+            } else {
+                viewEmployees();
+            }
+            promptUser();
+        });
+    });
+}
 
 // // Update a current employee's role
 // app.put("/api/employees/:id", (req, res) => {
