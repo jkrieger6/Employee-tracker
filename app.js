@@ -71,7 +71,6 @@ function viewDepartments() {
 // // View all roles
 function viewRoles () {
     db.query("SELECT * FROM role", function (err, results) {
-        // console.log(results);
         console.table(results);
         promptUser();
   });
@@ -79,7 +78,8 @@ function viewRoles () {
 
 // // View all employees
 function viewEmployees () {
-    db.query("SELECT * FROM EMPLOYEE JOIN role ON employee.role_id = role.title AS title", function (err, results) {
+    db.query("SELECT *, role.title FROM employee JOIN role ON employee.role_id = role_id", function (err, results) {
+        // console.log(results);
         console.table(results);
         promptUser();
 });
