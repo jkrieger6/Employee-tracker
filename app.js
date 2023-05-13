@@ -105,7 +105,7 @@ function addDepartment() {
         if (err) {
           console.log("Could not add department.");
         } else {
-          viewDepartments();
+          console.log("Department added.");
         }
         promptUser();
       });
@@ -140,7 +140,7 @@ function addRole() {
         if (err) {
           console.log("Could not add role.");
         } else {
-          viewRoles();
+          console.log("Role added.");
         }
         promptUser();
       });
@@ -185,7 +185,7 @@ function addEmployee() {
         if (err) {
           console.log("Could not add employee.");
         } else {
-          viewEmployees();
+          console.log("Employee added.");
         }
         promptUser();
       });
@@ -215,7 +215,7 @@ function updateEmployeeRole() {
         if (err) {
           console.log("Could not update employee role.");
         } else {
-          viewEmployees();
+          console.log("Employee role updated.");
         }
         promptUser();
       });
@@ -245,7 +245,7 @@ function updateEmployeeManager() {
         if (err) {
           console.log("Could not update employee manager.");
         } else {
-          viewEmployees();
+          console.log("Employee manager updated.");
         }
         promptUser();
       });
