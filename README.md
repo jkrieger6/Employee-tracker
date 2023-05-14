@@ -2,10 +2,10 @@
 A command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL.
 
 ## Project Description
-A command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL. Once the application has been started the user will be prompted wiht a list to choose from for the employee database. The user can choose which table to look at in an ordered table and then can choose to add, update, or delete from the table. The user can also choose to exit the application.
+A command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL. Once the application has been started the user will be prompted wiht a list to choose from for the employee database. The user can choose which table to look at in an ordered table and then can choose to add, update, or delete from the table. There is also the ability to view each departments budget based off of the total salary from that department. The user can also choose to exit the application once finished.
 
 ## Visuals
-* For a walkthrough video on how to use this application, please click the following link:
+* For a walkthrough video on how to use this application, please click the following link: https://drive.google.com/file/d/1gjVNhXH2tvYMi5-vgkO7yX2sXF35Gcp_/view 
 
 ## Installation
 * Node version 16 is required to run this application
