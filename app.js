@@ -35,6 +35,7 @@ function promptUser() {
           "Add an employee",
           "Update an employee role",
           "Update an employee manager",
+          "View budget by department",
           "Exit",
         ],
       },
@@ -57,6 +58,8 @@ function promptUser() {
         updateEmployeeRole();
       } else if (options === "Update an employee manager") {
         updateEmployeeManager();
+      } else if (options === "View budget by department") {
+        viewBudget();
       } else if (options === "Exit") {
         db.end();
       }
@@ -262,4 +265,20 @@ function updateEmployeeManager() {
         promptUser();
       });
     });
+}
+
+// Function to view budget by department
+function viewBudget() {
+  db.query(
+    `SELECT department.name AS department, SUM(role.salary) AS budget
+    FROM employee
+    LEFT JOIN role ON employee.role_id = role.id
+    LEFT JOIN department ON role.department_id = department.id
+    GROUP BY department.name`,
+
+    function (err, results) {
+      console.table(results);
+      promptUser();
+    }
+  );
 }
