@@ -72,10 +72,15 @@ function viewDepartments() {
 
 // // View all roles
 function viewRoles() {
-  db.query("SELECT * FROM role", function (err, results) {
-    console.table(results);
-    promptUser();
-  });
+  db.query(
+    `SELECT role.id, role.title, department.name AS department
+  FROM role
+  INNER JOIN department ON role.department_id = department.id`,
+    function (err, results) {
+      console.table(results);
+      promptUser();
+    }
+  );
 }
 
 // // View all employees
